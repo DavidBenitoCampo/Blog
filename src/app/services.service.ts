@@ -27,11 +27,18 @@ export class PostService {
   }
 
   add(nuevoPost: Post) {
-    this.posts.push(nuevoPost);
+    return new Promise((resolve, reject) => {
+      this.posts.push(nuevoPost);
+      console.log(this.posts)
+      resolve(this.posts);
+    });
   }
 
-  getAll(): Post[] {
-    return this.posts;
+  getAll(): Promise<Post[]> {
+    return new Promise((resolve, reject) => {
+      resolve(this.posts);
+    })
+
   }
 }
 

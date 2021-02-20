@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { PostService } from 'src/app/services.service';
@@ -25,7 +26,10 @@ export class NewComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    this.postService.add(this.formulario.value)
+  async onSubmit() {
+
+    const nuevoArr = await this.postService.add(this.formulario.value)
+    this.formulario.reset();
+
   }
 }
