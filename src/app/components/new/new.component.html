@@ -1,1 +1,35 @@
-<p>new works!</p>
+<form [formGroup]='formulario' (ngSubmit)="onSubmit()">
+
+    <div class="form-Group">
+        <label>Título</label>
+        <input type="text" class="form-control" formControlName="titulo">
+    </div>
+
+    <div class="form-Group">
+        <label>Texto</label>
+        <input type="text" class="form-control" formControlName="texto">
+    </div>
+
+    <div class="form-Group">
+        <label>Autor</label>
+        <input type="text" class="form-control" formControlName="autor">
+    </div>
+
+    <div class="form-Group">
+        <label>Imagen</label>
+        <input type="text" class="form-control" formControlName="imagen">
+    </div>
+
+    <div class="form-Group">
+        <label>Categoria</label>
+        <select class="form-select" aria-label="Default select example" class="form-control"
+            formControlName="categoria">
+            <option selected>Open this select menu</option>
+            <option value="Terror">Terror</option>
+            <option value="Comedia">Comedia</option>
+            <option value="Amor">Amor</option>
+        </select>
+        <input type="submit" value="Enviar" class="btn btn-info">
+    </div>
+
+</form>

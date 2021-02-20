@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Post } from './post.interface';
+
 
 
 @Component({
@@ -9,6 +9,6 @@ import { Post } from './post.interface';
 })
 
 export class AppComponent {
-  arrPost: Post[]
+
 
 }
