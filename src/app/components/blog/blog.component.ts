@@ -9,13 +9,26 @@ import { Post, PostService } from 'src/app/services.service';
 export class BlogComponent implements OnInit {
   posts: Post[]
 
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService) { this.posts = [] }
 
   ngOnInit(): void {
     this.postService.getAll()
       .then(listaposts => {
         this.posts = listaposts;
       })
+  }
+
+  async onChange($event) {
+    try {
+      if ($event.target.value === 'todos') {
+        this.posts = await this.postService.getAll();
+      } else {
+        this.posts = await this.postService.getbyCategory($event.target.value);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
   }
 
 }
