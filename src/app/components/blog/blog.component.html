@@ -1,23 +1,29 @@
-<body>
+<body class="bg-dark">
 
-    <select class="form-select" aria-label="Default select example" (change)="onChange($event)">
-        <option value="todos">Todos</option>
-        <option [value]="categoria" *ngFor="let post of posts">
-            {{categoria}}
-        </option>
-    </select>
+    <div class="row">
 
-    <div id="posts" class="card" style="width: 18rem;" *ngFor="let post of posts">
-        <img class="card-img-top" [src]="post.imagen" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">{{post.titulo}}</h5>
-            <p class="card-text">{{post.autor}}</p>
+        <div id="posts" class="card col-sm-8 mb-2" *ngFor="let post of posts">
+            <img class="card-img-top" [src]="post.imagen" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{post.titulo}}</h5>
+                <p class="card-text">{{post.autor}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{post.texto}}</li>
+                <li class="list-group-item">{{post.fecha | date:'dd/MM/YYYY'}}</li>
+                <li class="list-group-item">{{post.categoria}}</li>
+            </ul>
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{post.texto}}</li>
-            <li class="list-group-item">{{post.fecha}}</li>
-            <li class="list-group-item">{{post.categoria}}</li>
-        </ul>
+        <div class="col-sm-4">
+
+            <ul class="list-group">
+                <li class="list-group-item active">Categorias</li>
+                <li class="list-group-item" (click)="onClick('amor')">Amor</li>
+                <li class="list-group-item" (click)="onClick('comedia')">Comedia</li>
+                <li class="list-group-item" (click)="onClick('terror')">Terror</li>
+            </ul>
+
+        </div>
 
     </div>
 </body>

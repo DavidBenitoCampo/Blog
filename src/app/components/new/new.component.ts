@@ -1,7 +1,7 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { PostService } from 'src/app/services.service';
+import { Post, PostService } from 'src/app/services.service';
 
 @Component({
   selector: 'app-new',
@@ -9,7 +9,7 @@ import { PostService } from 'src/app/services.service';
   styleUrls: ['./new.component.css']
 })
 export class NewComponent implements OnInit {
-
+  posts: Post[]
   formulario: FormGroup;
 
   constructor(private postService: PostService) {
@@ -18,9 +18,10 @@ export class NewComponent implements OnInit {
       texto: new FormControl(),
       autor: new FormControl(),
       imagen: new FormControl(),
-      fecha: new FormControl(),
-      categoria: new FormControl()
+      categoria: new FormControl(),
+      fecha: new FormControl()
     })
+
   }
 
   ngOnInit(): void {

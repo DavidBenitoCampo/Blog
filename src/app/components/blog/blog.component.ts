@@ -9,26 +9,28 @@ import { Post, PostService } from 'src/app/services.service';
 export class BlogComponent implements OnInit {
   posts: Post[]
 
-  constructor(private postService: PostService) { this.posts = [] }
+  constructor(private postService: PostService) { }
 
-  ngOnInit(): void {
-    this.postService.getAll()
-      .then(listaposts => {
-        this.posts = listaposts;
-      })
-  }
+  async ngOnInit() {
+    if (localStorage.getItem('posts')) {
+      const stringArray = localStorage.getItem('posts');
+      this.posts = JSON.parse(stringArray);
+    } else {
+      this.posts = [];
+    };
+    this.posts = (await this.postService.getAll()).reverse();
+    //Recuperar el localStorage.
 
-  async onChange($event) {
-    try {
-      if ($event.target.value === 'todos') {
-        this.posts = await this.postService.getAll();
-      } else {
-        this.posts = await this.postService.getbyCategory($event.target.value);
-      }
-    } catch (error) {
-      console.log(error);
-    }
 
   }
+  async onClick($event) {
+
+    console.log($event)
+    this.posts = await this.postService.getbyCategory($event);
+
+
+  }
+
+
 
 }
